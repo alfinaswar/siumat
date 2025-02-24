@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DependantDropdownController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\JemaatController;
 use App\Http\Controllers\KartuKeluargaController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\MasterKubController;
@@ -66,12 +67,16 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('hapus/{id}', [KartuKeluargaController::class, 'destroy'])->name('data-kk.destroy');
     });
     Route::prefix('data-induk')->group(function () {
-        Route::GET('/', [KartuKeluargaController::class, 'index'])->name('data-induk.index');
-        Route::GET('/create', [KartuKeluargaController::class, 'create'])->name('data-induk.create');
-        Route::POST('/simpan', [KartuKeluargaController::class, 'store'])->name('data-induk.store');
-        Route::GET('/edit/{id}', [KartuKeluargaController::class, 'edit'])->name('data-induk.edit');
-        Route::PUT('/update/{id}', [KartuKeluargaController::class, 'update'])->name('data-induk.update');
-        Route::delete('hapus/{id}', [KartuKeluargaController::class, 'destroy'])->name('data-induk.destroy');
+        Route::GET('/', [JemaatController::class, 'index'])->name('jemaat.index');
+        Route::GET('/create', [JemaatController::class, 'createAnggota'])->name('jemaat.create');
+        Route::GET('/tambah-anggota-keluarga/{id}', [JemaatController::class, 'create'])->name('jemaat.tambah-anggota-keluarga');
+        Route::GET('/tambah-dokumen/{id}', [JemaatController::class, 'dokumen'])->name('jemaat.tambah-dokumen');
+        Route::POST('/simpan', [JemaatController::class, 'store'])->name('jemaat.store');
+        Route::POST('/simpan-dokumen', [JemaatController::class, 'storeDokumen'])->name('jemaat.simpan-dokumen');
+        Route::GET('/edit/{id}', [JemaatController::class, 'edit'])->name('jemaat.edit');
+        Route::PUT('/update/{id}', [JemaatController::class, 'update'])->name('jemaat.update');
+        Route::delete('hapus/{id}', [JemaatController::class, 'destroy'])->name('jemaat.destroy');
+        Route::delete('hapus-dokumen/{id}', [JemaatController::class, 'destroyDoc'])->name('jemaat.hapus-dokumen');
     });
     Route::prefix('master-kub')->group(function () {
         Route::GET('/', [MasterKubController::class, 'index'])->name('kub.index');

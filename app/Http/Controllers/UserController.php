@@ -35,9 +35,11 @@ class UserController extends Controller
      */
     public function create(): View
     {
+        $getRole = auth()->user()->getRoleNames();
+        $curentRole = $getRole[0];
         $kub = MasterKub::all();
         $roles = Role::pluck('name', 'name')->all();
-        return view('users.create', compact('roles', 'kub'));
+        return view('users.create', compact('roles', 'kub', 'curentRole'));
     }
 
     /**
@@ -74,7 +76,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id): View {}
+    public function show($id): View
+    {
+    }
 
     /**
      * Show the form for editing the specified resource.

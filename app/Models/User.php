@@ -64,4 +64,8 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Village::class, 'kelurahan', 'id');
     }
+    public function getDokumen()
+    {
+        return $this->hasMany(Dokumen::class, 'pemilik', 'id');
+    }
 }
