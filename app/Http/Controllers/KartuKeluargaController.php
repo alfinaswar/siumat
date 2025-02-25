@@ -49,10 +49,10 @@ class KartuKeluargaController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $data['kub'] = auth()->user()->kub;
+        $data['kub'] = $request->kub;
         $data['dibuat_oleh'] = auth()->user()->id;
         KartuKeluarga::create($data);
-        return redirect()->route('data-kk.index')->with('success', 'Data Rayon Berhasil Ditambahkan');
+        return redirect()->route('jemaat.index')->with('success', 'Data KK Berhasil Ditambahkan');
     }
 
     /**

@@ -190,38 +190,50 @@
                             <span class="nav-text">Master Data</span>
                         </a>
                         <ul aria-expanded="false">
-                            @can('pendeta')
-                                <li class="{{ collect(Request::segments())->contains('pendeta') ? 'mm-active' : '' }}">
-                                    <a href="{{ route('pendeta.index') }}">
-                                        <i class="fas fa-user-tie"></i> <!-- Ikon Pendeta -->
-                                        Pendeta
-                                    </a>
-                                </li>
+                            <li class="{{ collect(Request::segments())->contains('pendeta') ? 'mm-active' : '' }}">
+                                <a href="{{ route('pk.index') }}">
+                                    <i class="fas fa-user-tie"></i> <!-- Ikon Pendeta -->
+                                    Profil KUB
+                                </a>
+                            </li>
+                            <li class="{{ collect(Request::segments())->contains('pendeta') ? 'mm-active' : '' }}">
+                                <a href="{{ route('ps.index') }}">
+                                    <i class="fas fa-user-tie"></i> <!-- Ikon Pendeta -->
+                                    Profil Stasi
+                                </a>
+                            </li>
+                            {{-- @can('pendeta')
+                            <li class="{{ collect(Request::segments())->contains('pendeta') ? 'mm-active' : '' }}">
+                                <a href="{{ route('pendeta.index') }}">
+                                    <i class="fas fa-user-tie"></i> <!-- Ikon Pendeta -->
+                                    Profil KUB
+                                </a>
+                            </li>
                             @endcan
                             @can('rayon')
-                                <li class="{{ collect(Request::segments())->contains('rayon') ? 'mm-active' : '' }}">
-                                    <a href="{{ route('rayon.index') }}">
-                                        <i class="fas fa-map-marker-alt"></i> <!-- Ikon Rayon -->
-                                        Rayon
-                                    </a>
-                                </li>
+                            <li class="{{ collect(Request::segments())->contains('rayon') ? 'mm-active' : '' }}">
+                                <a href="{{ route('rayon.index') }}">
+                                    <i class="fas fa-map-marker-alt"></i> <!-- Ikon Rayon -->
+                                    Rayon
+                                </a>
+                            </li>
                             @endcan
                             @can('majelis')
-                                <li class="{{ collect(Request::segments())->contains('majelis') ? 'mm-active' : '' }}">
-                                    <a href="{{ route('majelis.index') }}">
-                                        <i class="fas fa-users"></i> <!-- Ikon Majelis -->
-                                        Majelis
-                                    </a>
-                                </li>
+                            <li class="{{ collect(Request::segments())->contains('majelis') ? 'mm-active' : '' }}">
+                                <a href="{{ route('majelis.index') }}">
+                                    <i class="fas fa-users"></i> <!-- Ikon Majelis -->
+                                    Majelis
+                                </a>
+                            </li>
                             @endcan
                             @can('data-kk')
-                                <li class="{{ collect(Request::segments())->contains('data-kk') ? 'mm-active' : '' }}">
-                                    <a href="{{ route('data-kk.index') }}">
-                                        <i class="fas fa-id-card"></i> <!-- Ikon Data KK -->
-                                        Data KK
-                                    </a>
-                                </li>
-                            @endcan
+                            <li class="{{ collect(Request::segments())->contains('data-kk') ? 'mm-active' : '' }}">
+                                <a href="{{ route('data-kk.index') }}">
+                                    <i class="fas fa-id-card"></i> <!-- Ikon Data KK -->
+                                    Data KK
+                                </a>
+                            </li>
+                            @endcan --}}
                         </ul>
                     </li>
 

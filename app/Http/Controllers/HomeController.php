@@ -57,4 +57,8 @@ class HomeController extends Controller
         $totalKub = MasterKub::count();
         return view('home', compact('totalPria', 'totalWanita', 'usiaAnak', 'usiaRemaja', 'usiaDewasa', 'usiaLansia', 'totalKK', 'totalUser', 'totalRT', 'totalRW', 'totalKub'));
     }
+    public function menu()
+    {
+        return view('pilih-kub');
+    }
 }

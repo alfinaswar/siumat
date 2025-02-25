@@ -28,6 +28,13 @@
                                 {!! Form::text('NamaKub', null, ['placeholder' => 'Nama KUB', 'class' => 'form-control']) !!}
                             </div>
                         </div>
+
+                        <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+                            <div class="form-group">
+                                <strong>Deskripsi:</strong>
+                                {!! Form::textarea('Deskripsi', null, ['placeholder' => 'Deskripsi', 'class' => 'form-control', 'rows' => 3]) !!}
+                            </div>
+                        </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 ">
                             <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>

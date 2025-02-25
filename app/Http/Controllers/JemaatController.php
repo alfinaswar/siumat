@@ -23,15 +23,9 @@ class JemaatController extends Controller
      */
     public function index(Request $request)
     {
+        // dd('123');
         if ($request->ajax()) {
-            $getRole = auth()->user()->getRoleNames();
-            if ($getRole[0] === 'Admin' || $getRole[0] === 'Ketua') {
-                $data = KartuKeluarga::with('getRayon')->orderBy('id', 'Desc')->get();
-            } elseif ($getRole[0] === 'Jemaat') {
-                $data = KartuKeluarga::with('getRayon')->where('kub', auth()->user()->kub)->where('no_kk', auth()->user()->no_kk)->orderBy('id', 'Desc')->get();
-            } else {
-                $data = KartuKeluarga::with('getRayon')->where('kub', auth()->user()->kub)->orderBy('id', 'Desc')->get();
-            }
+            $data = KartuKeluarga::with('getKub')->where('kub', auth()->user()->kub)->orderBy('id', 'Desc')->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
@@ -41,7 +35,8 @@ class JemaatController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        return view('jemaat.index');
+        $kub = MasterKub::all();
+        return view('jemaat.index', compact('kub'));
     }
 
     /**
@@ -100,12 +95,9 @@ class JemaatController extends Controller
             $data['foto_profil'] = $file->getClientOriginalName();
         }
 
-        // dd($input);
-        $input['password'] = Hash::make($input['password']);
-        $input['akses'] = $request->roles[0];
 
         $user = User::create($input);
-        $user->assignRole($request->input('roles'));
+
 
         return redirect()->route('jemaat.tambah-anggota-keluarga', $request->no_kk)->with('success', 'Data Pengguna Berhasil Ditambahkan');
     }

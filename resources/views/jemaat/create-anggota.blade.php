@@ -296,30 +296,7 @@
 
                         <!-- Role dan Status -->
 
-                        @if($curentRole === 'Admin')
-                                            <div class="col-sm-6 m-b30">
-                                                <label class="form-label">Role</label>
-                                                {!! Form::select('roles[]', $roles, [], ['class' => 'me-sm-2 default-select form-control wide']) !!}
-                                            </div>
 
-                                            <div class="col-sm-6 m-b30">
-                                                <label class="form-label">Status Akun</label>
-                                                {!! Form::select('status_akun', ['aktif' => 'aktif', 'nonaktif' => 'nonaktif'], 'aktif', [
-                                'class' => 'form-control',
-                            ]) !!}
-                                            </div>
-
-                                            <!-- Password -->
-                                            <div class="col-sm-6 m-b30">
-                                                <label class="form-label">Password</label>
-                                                {!! Form::password('password', ['placeholder' => 'Password', 'class' => 'form-control']) !!}
-                                            </div>
-
-                                            <div class="col-sm-6 m-b30">
-                                                <label class="form-label">Konfirmasi Password</label>
-                                                {!! Form::password('password_confirmation', ['placeholder' => 'Konfirmasi Password', 'class' => 'form-control']) !!}
-                                            </div>
-                        @endif
                         <!-- Upload -->
                         <div class="col-sm-6 m-b30">
                             <label class="form-label">Foto Profil</label>

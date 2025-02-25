@@ -56,11 +56,13 @@ class MasterKubController extends Controller
     {
         $request->validate([
             'NamaKub' => 'required|string|max:255',
+            'Deskripsi' => 'nullable|string',
         ]);
 
         $kub = MasterKub::findOrFail($id);
         $kub->update([
             'NamaKub' => $request->NamaKub,
+            'Deskripsi' => $request->Deskripsi,
         ]);
 
         return redirect()

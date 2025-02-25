@@ -9,6 +9,8 @@ use App\Http\Controllers\MasterKubController;
 use App\Http\Controllers\MasterMajelisController;
 use App\Http\Controllers\MasterPendetaController;
 use App\Http\Controllers\MasterRayonController;
+use App\Http\Controllers\ProfilKubController;
+use App\Http\Controllers\ProfilStasiController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +35,7 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => ['auth']], function () {
+    Route::get('/pilih-kub', [HomeController::class, 'menu'])->name('PilihKub');
     Route::prefix('pendeta')->group(function () {
         Route::GET('/', [MasterPendetaController::class, 'index'])->name('pendeta.index');
         Route::GET('/create', [MasterPendetaController::class, 'create'])->name('pendeta.create');
@@ -48,6 +51,22 @@ Route::group(['middleware' => ['auth']], function () {
         Route::GET('/edit/{id}', [MasterRayonController::class, 'edit'])->name('rayon.edit');
         Route::PUT('/update/{id}', [MasterRayonController::class, 'update'])->name('rayon.update');
         Route::delete('hapus/{id}', [MasterRayonController::class, 'destroy'])->name('rayon.destroy');
+    });
+    Route::prefix('profil-kub')->group(function () {
+        Route::GET('/', [ProfilKubController::class, 'index'])->name('pk.index');
+        Route::GET('/create', [ProfilKubController::class, 'create'])->name('pk.create');
+        Route::POST('/simpan', [ProfilKubController::class, 'store'])->name('pk.store');
+        Route::GET('/edit/{id}', [ProfilKubController::class, 'edit'])->name('pk.edit');
+        Route::PUT('/update/{id}', [ProfilKubController::class, 'update'])->name('pk.update');
+        Route::delete('hapus/{id}', [ProfilKubController::class, 'destroy'])->name('pk.destroy');
+    });
+    Route::prefix('profil-stasi')->group(function () {
+        Route::GET('/', [ProfilStasiController::class, 'index'])->name('ps.index');
+        Route::GET('/create', [ProfilStasiController::class, 'create'])->name('ps.create');
+        Route::POST('/simpan', [ProfilStasiController::class, 'store'])->name('ps.store');
+        Route::GET('/edit/{id}', [ProfilStasiController::class, 'edit'])->name('ps.edit');
+        Route::PUT('/update/{id}', [ProfilStasiController::class, 'update'])->name('ps.update');
+        Route::delete('hapus/{id}', [ProfilStasiController::class, 'destroy'])->name('ps.destroy');
     });
 
     Route::prefix('majelis')->group(function () {
