@@ -110,6 +110,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::GET('/', [LaporanController::class, 'index'])->name('laporan.index');
     });
     Route::get('/pengeluaran/export', [KeuanganController::class, 'export'])->name('pengeluaran.export');
+    Route::get('/keluarga/export', [JemaatController::class, 'export'])->name('keluarga.export');
     Route::get('provinces', [DependantDropdownController::class, 'provinces'])->name('provinces');
     Route::get('cities', [DependantDropdownController::class, 'cities'])->name('cities');
     Route::get('districts', [DependantDropdownController::class, 'districts'])->name('districts');

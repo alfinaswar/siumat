@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\UsersExport;
 use App\Models\Dokumen;
 use App\Models\Jemaat;
 use App\Models\KartuKeluarga;
 use App\Models\MasterKub;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Arr;
+use Illuminate\View\View;
+use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Permission\Models\Role;
 use Yajra\DataTables\Facades\DataTables;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\View\View;
-use Illuminate\Support\Arr;
 use DB;
 
 class JemaatController extends Controller
@@ -39,6 +41,15 @@ class JemaatController extends Controller
         return view('jemaat.index', compact('kub'));
     }
 
+    public function export(Request $request)
+    {
+        $jenisKelamin = $request->input('jenis_kelamin');
+        $usiaMin = $request->input('usia_min');
+        $usiaMax = $request->input('usia_max');
+
+        return Excel::download(new UsersExport($jenisKelamin, $usiaMin, $usiaMax), 'Laporan_Data_Keluarga.xlsx');
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -49,12 +60,14 @@ class JemaatController extends Controller
         // dd($id);
         return view('jemaat.create', compact('user', 'Keluarga'));
     }
+
     public function dokumen($id)
     {
         $user = User::with('getDokumen')->find($id)->first();
         // dd($user);
         return view('jemaat.form-add-dokumen', compact('user'));
     }
+
     public function createAnggota()
     {
         $getRole = auth()->user()->getRoleNames();
@@ -63,6 +76,7 @@ class JemaatController extends Controller
         $roles = Role::pluck('name', 'name')->all();
         return view('jemaat.create-anggota', compact('roles', 'kub', 'curentRole'));
     }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -81,9 +95,9 @@ class JemaatController extends Controller
 
         $data = Dokumen::create($input);
 
-
         return redirect()->back()->with('success', 'Dokumen Pengguna Berhasil Ditambahkan');
     }
+
     public function store(Request $request): RedirectResponse
     {
         $input = $request->all();
@@ -96,12 +110,11 @@ class JemaatController extends Controller
             $data['foto_profil'] = $file->getClientOriginalName();
         }
 
-
         $user = User::create($input);
-
 
         return redirect()->route('jemaat.tambah-anggota-keluarga', $request->no_kk)->with('success', 'Data Pengguna Berhasil Ditambahkan');
     }
+
     /**
      * Display the specified resource.
      */
@@ -134,17 +147,9 @@ class JemaatController extends Controller
             $file->storeAs('public/foto_profil', $file->getClientOriginalName());
             $data['foto_profil'] = $file->getClientOriginalName();
         }
-        if (!empty($input['password'])) {
-            $input['password'] = Hash::make($input['password']);
-        } else {
-            $input = Arr::except($input, array('password'));
-        }
 
         $user = User::find($id);
         $user->update($input);
-        DB::table('model_has_roles')->where('model_id', $id)->delete();
-
-        $user->assignRole($request->input('roles'));
 
         return redirect()
             ->back()
@@ -160,5 +165,4 @@ class JemaatController extends Controller
         $data->delete();
         return response()->json(['message' => 'Data Dokumen Berhasil Dihapus'], 200);
     }
-
 }

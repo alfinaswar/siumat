@@ -35,8 +35,9 @@
                             {{-- Nomor KK --}}
                             <div class="mb-3 col-md-6">
                                 <label class="form-label">Nomor KK</label>
-                                <input type="text" name="no_kk" class="form-control @error('no_kk') is-invalid @enderror"
-                                    value="{{ old('no_kk') }}" placeholder="Nomor Kartu Keluarga" maxlength="16">
+                                <input type="text" name="no_kk"
+                                    class="form-control @error('no_kk') is-invalid @enderror" value="{{ old('no_kk') }}"
+                                    placeholder="Nomor Kartu Keluarga" maxlength="16">
                                 @error('no_kk')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -48,8 +49,8 @@
                             <div class="mb-3 col-md-6">
                                 <label class="form-label">Nama Kepala Keluarga</label>
                                 <input type="text" name="nama_kk"
-                                    class="form-control @error('nama_kk') is-invalid @enderror"
-                                    value="{{ old('nama_kk') }}" placeholder="Nama Kepala Keluarga">
+                                    class="form-control @error('nama_kk') is-invalid @enderror" value="{{ old('nama_kk') }}"
+                                    placeholder="Nama Kepala Keluarga">
                                 @error('nama_kk')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -60,8 +61,9 @@
                             {{-- Alamat --}}
                             <div class="mb-3 col-md-6">
                                 <label class="form-label">Alamat</label>
-                                <input type="text" name="alamat" class="form-control @error('alamat') is-invalid @enderror"
-                                    value="{{ old('alamat') }}" placeholder="Alamat Lengkap">
+                                <input type="text" name="alamat"
+                                    class="form-control @error('alamat') is-invalid @enderror" value="{{ old('alamat') }}"
+                                    placeholder="Alamat Lengkap">
                                 @error('alamat')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -90,7 +92,8 @@
                                     <option value="">Pilih Bentuk Rumah</option>
                                     <option value="Permanen" {{ old('bentuk_rumah') == 'Permanen' ? 'selected' : '' }}>
                                         Permanen</option>
-                                    <option value="Tidak Permanen" {{ old('bentuk_rumah') == 'Tidak Permanen' ? 'selected' : '' }}>Tidak
+                                    <option value="Tidak Permanen"
+                                        {{ old('bentuk_rumah') == 'Tidak Permanen' ? 'selected' : '' }}>Tidak
                                         Permanen</option>
 
                                 </select>
@@ -107,9 +110,11 @@
                                 <select name="status_rumah"
                                     class="form-control @error('status_rumah') is-invalid @enderror">
                                     <option value="">Pilih Status Rumah</option>
-                                    <option value="Milik Sendiri" {{ old('status_rumah') == 'Milik Sendiri' ? 'selected' : '' }}>Milik Sendiri
+                                    <option value="Milik Sendiri"
+                                        {{ old('status_rumah') == 'Milik Sendiri' ? 'selected' : '' }}>Milik Sendiri
                                     </option>
-                                    <option value="Kontrak" {{ old('status_rumah') == 'Kontrak' ? 'selected' : '' }}>Kontrak
+                                    <option value="Kontrak" {{ old('status_rumah') == 'Kontrak' ? 'selected' : '' }}>
+                                        Kontrak
                                     </option>
                                 </select>
                                 @error('status_rumah')
@@ -131,8 +136,38 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header d-flex justify-content-between align-items-center">
                     <h4 class="card-title">Data Anggota Keluarga</h4>
+                    <form action="{{ route('keluarga.export') }}" method="GET" class="d-flex align-items-center gap-2">
+                        <!-- Filter Jenis Kelamin -->
+                        <div class="form-group mb-0 me-2">
+                            <label for="gender" class="me-2">Jenis Kelamin:</label>
+                            <select name="gender" id="gender" class="form-control">
+                                <option value="">Semua</option>
+                                <option value="L">Laki-laki</option>
+                                <option value="P">Perempuan</option>
+                            </select>
+                        </div>
+
+                        <!-- Filter Usia Awal -->
+                        <div class="form-group mb-0 me-2">
+                            <label for="min_age" class="me-2">Usia Minimal:</label>
+                            <input type="number" class="form-control" id="min_age" name="min_age" placeholder="0">
+                        </div>
+
+                        <!-- Filter Usia Akhir -->
+                        <div class="form-group mb-0 me-2">
+                            <label for="max_age" class="me-2">Usia Maksimal:</label>
+                            <input type="number" class="form-control" id="max_age" name="max_age" placeholder="100">
+                        </div>
+
+                        <!-- Tombol Export Excel -->
+                        <div class="form-group mb-0">
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-file-excel"></i> Export Excel
+                            </button>
+                        </div>
+                    </form>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -162,7 +197,7 @@
 
     @if (session()->has('success'))
         <script>
-            setTimeout(function () {
+            setTimeout(function() {
                 swal.fire({
                     title: "{{ __('Success!') }}",
                     text: "{!! \Session::get('success') !!}",
@@ -173,8 +208,8 @@
         </script>
     @endif
     <script>
-        $(document).ready(function () {
-            $('body').on('click', '.btn-delete', function () {
+        $(document).ready(function() {
+            $('body').on('click', '.btn-delete', function() {
                 var id = $(this).data('id');
 
                 Swal.fire({
@@ -194,7 +229,7 @@
                             data: {
                                 _token: '{{ csrf_token() }}'
                             },
-                            success: function (response) {
+                            success: function(response) {
                                 Swal.fire(
                                     'Dihapus',
                                     'Data Berhasil Dihapus',
@@ -202,7 +237,7 @@
                                 );
                                 $('#example').DataTable().ajax.reload();
                             },
-                            error: function (xhr) {
+                            error: function(xhr) {
                                 Swal.fire(
                                     'Gagal!',
                                     'Terjadi Kesalahan',
@@ -215,7 +250,7 @@
                 });
             });
 
-            var dataTable = function () {
+            var dataTable = function() {
                 var table = $('#example');
                 table.DataTable({
                     responsive: true,
@@ -230,15 +265,38 @@
                         }
                     },
                     ajax: "{{ route('jemaat.index') }}",
-                    columns: [
-                        { data: 'DT_RowIndex', name: 'DT_RowIndex' },
-                        { data: 'no_kk', name: 'no_kk' },
-                        { data: 'no_kk', name: 'no_kk' },
-                        { data: 'nama_kk', name: 'nama_kk' },
-                        { data: 'alamat', name: 'alamat' },
-                        { data: 'telepon', name: 'telepon' },
-                        { data: 'bentuk_rumah', name: 'bentuk_rumah' },
-                        { data: 'status_rumah', name: 'status_rumah' },
+                    columns: [{
+                            data: 'DT_RowIndex',
+                            name: 'DT_RowIndex'
+                        },
+                        {
+                            data: 'no_kk',
+                            name: 'no_kk'
+                        },
+                        {
+                            data: 'no_kk',
+                            name: 'no_kk'
+                        },
+                        {
+                            data: 'nama_kk',
+                            name: 'nama_kk'
+                        },
+                        {
+                            data: 'alamat',
+                            name: 'alamat'
+                        },
+                        {
+                            data: 'telepon',
+                            name: 'telepon'
+                        },
+                        {
+                            data: 'bentuk_rumah',
+                            name: 'bentuk_rumah'
+                        },
+                        {
+                            data: 'status_rumah',
+                            name: 'status_rumah'
+                        },
                         {
                             data: 'action',
                             name: 'action',

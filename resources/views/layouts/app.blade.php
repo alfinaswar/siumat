@@ -8,8 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="author" content="Digital Indonesia Hebat">
     <meta name="keywords" content="Sistem Kalibrasi Alat Medis By PT. Digital Indonesia Hebat">
-    <meta name="description"
-        content="Sistem Kalibrasi Alat Medis Terbaik Di indonesia yang berkantor di kota pekanbaru">
+    <meta name="description" content="Sistem Kalibrasi Alat Medis Terbaik Di indonesia yang berkantor di kota pekanbaru">
     <meta property="og:title" content="Sistem Kalibrasi Alat Medis By Digital Indonesia Hebat">
     <meta property="og:description"
         content="Sistem Kalibrasi Alat Medis Terbaik Di indonesia yang berkantor di kota pekanbaru">
@@ -120,7 +119,8 @@
 
                             <li class="nav-item dropdown header-profile">
                                 <a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
-                                    <img src="{{ asset('assets/images/profile/2.jpg') }}" width="20" alt="">
+                                    <img src="{{ asset('assets/images/profile/2.jpg') }}" width="20"
+                                        alt="">
                                 </a>
                                 <!-- resources/views/partials/navbar.blade.php -->
 
@@ -191,17 +191,18 @@
                         </a>
                         <ul aria-expanded="false">
                             <li class="{{ collect(Request::segments())->contains('pendeta') ? 'mm-active' : '' }}">
-                                <a href="{{ route('pk.index') }}">
-                                    <i class="fas fa-user-tie"></i> <!-- Ikon Pendeta -->
-                                    Profil KUB
-                                </a>
-                            </li>
-                            <li class="{{ collect(Request::segments())->contains('pendeta') ? 'mm-active' : '' }}">
                                 <a href="{{ route('ps.index') }}">
                                     <i class="fas fa-user-tie"></i> <!-- Ikon Pendeta -->
                                     Profil Stasi
                                 </a>
                             </li>
+                            <li class="{{ collect(Request::segments())->contains('pendeta') ? 'mm-active' : '' }}">
+                                <a href="{{ route('pk.index') }}">
+                                    <i class="fas fa-user-tie"></i> <!-- Ikon Pendeta -->
+                                    Profil KUB
+                                </a>
+                            </li>
+
                             {{-- @can('pendeta')
                             <li class="{{ collect(Request::segments())->contains('pendeta') ? 'mm-active' : '' }}">
                                 <a href="{{ route('pendeta.index') }}">
@@ -239,7 +240,7 @@
                     <li class="{{ Request::segment(1) == 'pengeluaran' ? 'active' : '' }}">
                         <a class="" href="{{ route('pengeluaran.index') }}" aria-expanded="true">
                             <i class="fas fa-money-bill-wave"></i> <!-- Ikon Pengeluaran -->
-                            <span class="nav-text">Pengeluaran</span>
+                            <span class="nav-text">Laporan Keuangan</span>
                         </a>
                     </li>
                     <!-- Data Induk -->
@@ -253,7 +254,7 @@
                                 <li class="{{ collect(Request::segments())->contains('data-induk') ? 'mm-active' : '' }}">
                                     <a href="{{ route('jemaat.index') }}">
                                         <i class="fas fa-users"></i> <!-- Ikon Data Jemaat -->
-                                        Data Jemaat
+                                        Data Umat
                                     </a>
                                 </li>
                             </ul>
@@ -376,7 +377,8 @@
 <script src="{{ asset('') }}assets/vendor/jquery-asGradient/jquery-asGradient.min.js"></script>
 <script src="{{ asset('') }}assets/vendor/jquery-asColorPicker/js/jquery-asColorPicker.min.js"></script>
 <!-- Material color picker -->
-<script src="{{ asset('') }}assets/vendor/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js">
+<script
+    src="{{ asset('') }}assets/vendor/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js">
 </script>
 <script src="{{ asset('') }}assets/vendor/bootstrap-datepicker-master/js/bootstrap-datepicker.min.js"></script>
 <!-- pickdate -->
@@ -406,7 +408,7 @@
         format: 'yyyy-mm-dd'
     });
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl)
     })
 </script>

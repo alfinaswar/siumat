@@ -72,25 +72,35 @@
                         <div class="col-sm-6 m-b30">
                             <label class="form-label">Jumlah Anggota Keluarga</label>
                             {!! Form::number('jumlah_anggota_keluarga', null, [
-        'placeholder' => 'Jumlah Anggota Keluarga',
-        'class' => 'form-control',
-    ]) !!}
+                                'placeholder' => 'Jumlah Anggota Keluarga',
+                                'class' => 'form-control',
+                            ]) !!}
                         </div>
                         <div class="col-sm-6 m-b30">
                             <label class="form-label">Status Dalam keluarga</label>
-                            {!! Form::select('status_dalam_keluarga', [
-        'AYAH' => 'AYAH',
-        'IBU' => 'IBU',
-        'ANAK' => 'ANAK',
-        'LAINNYA' => 'LAINNYA'
-    ], old('status_dalam_keluarga', $user->status_dalam_keluarga), ['class' => 'form-control']) !!}
+                            {!! Form::select(
+                                'status_dalam_keluarga',
+                                [
+                                    'AYAH' => 'AYAH',
+                                    'IBU' => 'IBU',
+                                    'ANAK' => 'ANAK',
+                                    'LAINNYA' => 'LAINNYA',
+                                ],
+                                old('status_dalam_keluarga', $user->status_dalam_keluarga),
+                                ['class' => 'form-control'],
+                            ) !!}
                         </div>
                         <div class="col-sm-6 m-b30">
                             <label class="form-label">Baptis</label>
-                            {!! Form::select('baptis', [
-        'Y' => 'YA',
-        'N' => 'TIDAK'
-    ], old('baptis', $user->baptis), ['class' => 'form-control']) !!}
+                            {!! Form::select(
+                                'baptis',
+                                [
+                                    'Y' => 'YA',
+                                    'N' => 'TIDAK',
+                                ],
+                                old('baptis', $user->baptis),
+                                ['class' => 'form-control'],
+                            ) !!}
                         </div>
                         <div class="col-sm-6 m-b30">
                             <label class="form-label">Tanggal Baptis</label>
@@ -99,10 +109,15 @@
 
                         <div class="col-sm-6 m-b30">
                             <label class="form-label">Sidi</label>
-                            {!! Form::select('sidi', [
-        'Y' => 'YA',
-        'N' => 'TIDAK'
-    ], old('sidi', $user->sidi), ['class' => 'form-control']) !!}
+                            {!! Form::select(
+                                'sidi',
+                                [
+                                    'Y' => 'YA',
+                                    'N' => 'TIDAK',
+                                ],
+                                old('sidi', $user->sidi),
+                                ['class' => 'form-control'],
+                            ) !!}
                         </div>
                         <div class="col-sm-6 m-b30">
                             <label class="form-label">Nomor Telepon</label>
@@ -123,20 +138,20 @@
                         <div class="col-sm-6 m-b30">
                             <label class="form-label">Jenis Kelamin</label>
                             {!! Form::select('jenis_kelamin', ['L' => 'Laki-laki', 'P' => 'Perempuan'], null, [
-        'class' => 'form-control',
-        'placeholder' => '== Pilih Jenis Kelamin ==',
-    ]) !!}
+                                'class' => 'form-control',
+                                'placeholder' => '== Pilih Jenis Kelamin ==',
+                            ]) !!}
                         </div>
 
                         <!-- Data Pribadi Lainnya -->
                         <div class="col-sm-6 m-b30">
                             <label class="form-label">Status Perkawinan</label>
                             {!! Form::select(
-        'status_perkawinan',
-        ['Belum Kawin' => 'Belum Kawin', 'Kawin' => 'Kawin', 'Cerai Hidup' => 'Cerai Hidup', 'Cerai Mati' => 'Cerai Mati'],
-        null,
-        ['class' => 'form-control', 'placeholder' => '== Pilih Status Perkawinan =='],
-    ) !!}
+                                'status_perkawinan',
+                                ['Belum Kawin' => 'Belum Kawin', 'Kawin' => 'Kawin', 'Cerai Hidup' => 'Cerai Hidup', 'Cerai Mati' => 'Cerai Mati'],
+                                null,
+                                ['class' => 'form-control', 'placeholder' => '== Pilih Status Perkawinan =='],
+                            ) !!}
                         </div>
                         <div class="col-sm-6 m-b30">
                             <label class="form-label">Tanggal Nikah</label>
@@ -144,39 +159,49 @@
                         </div>
                         <div class="col-sm-6 m-b30">
                             <label class="form-label">Janda / Duda</label>
-                            {!! Form::select('janda_duda', [
-        'Y' => 'YA',
-        'N' => 'TIDAK'
-    ], old('janda_duda', $user->janda_duda), [
-        'class' => 'form-control',
-        'placeholder' => '== Pilih Status =='
-    ]) !!}
+                            {!! Form::select(
+                                'janda_duda',
+                                [
+                                    'Y' => 'YA',
+                                    'N' => 'TIDAK',
+                                ],
+                                old('janda_duda', $user->janda_duda),
+                                [
+                                    'class' => 'form-control',
+                                    'placeholder' => '== Pilih Status ==',
+                                ],
+                            ) !!}
                         </div>
                         <div class="col-sm-6 m-b30">
                             <label class="form-label">Yatim / Piatu</label>
-                            {!! Form::select('yatim', [
-        'Y' => 'YA',
-        'N' => 'TIDAK'
-    ], old('yatim', $user->yatim), [
-        'class' => 'form-control',
-        'placeholder' => '== Pilih Status =='
-    ]) !!}
+                            {!! Form::select(
+                                'yatim',
+                                [
+                                    'Y' => 'YA',
+                                    'N' => 'TIDAK',
+                                ],
+                                old('yatim', $user->yatim),
+                                [
+                                    'class' => 'form-control',
+                                    'placeholder' => '== Pilih Status ==',
+                                ],
+                            ) !!}
                         </div>
                         <div class="col-sm-6 m-b30">
                             <label class="form-label">Agama</label>
                             {!! Form::select(
-        'agama',
-        [
-            'Islam' => 'Islam',
-            'Kristen' => 'Kristen',
-            'Katolik' => 'Katolik',
-            'Hindu' => 'Hindu',
-            'Buddha' => 'Buddha',
-            'Konghucu' => 'Konghucu',
-        ],
-        null,
-        ['class' => 'form-control', 'placeholder' => '== Pilih Agama =='],
-    ) !!}
+                                'agama',
+                                [
+                                    'Islam' => 'Islam',
+                                    'Kristen' => 'Kristen',
+                                    'Katolik' => 'Katolik',
+                                    'Hindu' => 'Hindu',
+                                    'Buddha' => 'Buddha',
+                                    'Konghucu' => 'Konghucu',
+                                ],
+                                null,
+                                ['class' => 'form-control', 'placeholder' => '== Pilih Agama =='],
+                            ) !!}
                         </div>
 
                         <div class="col-sm-6 m-b30">
@@ -194,7 +219,8 @@
                             <select class="form-control" name="provinsi" id="provinsi" required>
                                 <option value="">== Pilih Provinsi ==</option>
                                 @foreach ($provinces as $item)
-                                    <option value="{{ $item->id }}" {{ $user->provinsi == $item->id ? 'selected' : '' }}>
+                                    <option value="{{ $item->id }}"
+                                        {{ $user->provinsi == $item->id ? 'selected' : '' }}>
                                         {{ $item->name }}
                                     </option>
                                 @endforeach
@@ -248,19 +274,19 @@
                         <div class="col-sm-6 m-b30">
                             <label class="form-label">Pendidikan Terakhir</label>
                             {!! Form::select(
-        'pendidikan_terakhir',
-        [
-            'SD' => 'SD',
-            'SMP' => 'SMP',
-            'SMA' => 'SMA',
-            'D3' => 'Diploma 3 (D3)',
-            'S1' => 'Sarjana (S1)',
-            'S2' => 'Magister (S2)',
-            'S3' => 'Doktor (S3)',
-        ],
-        null,
-        ['class' => 'form-control', 'placeholder' => '== Pilih Pendidikan =='],
-    ) !!}
+                                'pendidikan_terakhir',
+                                [
+                                    'SD' => 'SD',
+                                    'SMP' => 'SMP',
+                                    'SMA' => 'SMA',
+                                    'D3' => 'Diploma 3 (D3)',
+                                    'S1' => 'Sarjana (S1)',
+                                    'S2' => 'Magister (S2)',
+                                    'S3' => 'Doktor (S3)',
+                                ],
+                                null,
+                                ['class' => 'form-control', 'placeholder' => '== Pilih Pendidikan =='],
+                            ) !!}
                         </div>
 
                         <div class="col-sm-6 m-b30">
@@ -288,32 +314,7 @@
                             </select>
                         </div>
 
-                        <!-- Role dan Status -->
-                        <div class="col-sm-6 m-b30">
-                            <label class="form-label">Role</label>
-                            {!! Form::select('roles[]', $roles, isset($userRole) ? $userRole : [], [
-        'class' => 'me-sm-2 default-select form-control wide',
-    ]) !!}
-                        </div>
 
-                        <div class="col-sm-6 m-b30">
-                            <label class="form-label">Status Akun</label>
-                            {!! Form::select('status_akun', ['aktif' => 'aktif', 'nonaktif' => 'nonaktif'], null, [
-        'class' => 'form-control',
-    ]) !!}
-                        </div>
-
-                        <!-- Password -->
-                        <div class="col-sm-6 m-b30">
-                            <label class="form-label">Password</label>
-                            {!! Form::password('password', ['placeholder' => 'Password', 'class' => 'form-control']) !!}
-                            <small class="text-muted">Kosongkan jika tidak ingin mengubah password</small>
-                        </div>
-
-                        <div class="col-sm-6 m-b30">
-                            <label class="form-label">Konfirmasi Password</label>
-                            {!! Form::password('password_confirmation', ['placeholder' => 'Konfirmasi Password', 'class' => 'form-control']) !!}
-                        </div>
 
                         <div class="col-sm-6 m-b30">
                             <label class="form-label">Foto Profil</label>
@@ -344,11 +345,11 @@
 
 @push('scripts')
     <script>
-        document.getElementById('profileImageInput').addEventListener('change', function (event) {
+        document.getElementById('profileImageInput').addEventListener('change', function(event) {
             const input = event.target;
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
-                reader.onload = function (e) {
+                reader.onload = function(e) {
                     document.getElementById('profileImage').src = e.target.result;
                 }
                 reader.readAsDataURL(input.files[0]);
@@ -364,24 +365,24 @@
                 data: {
                     id: id
                 },
-                success: function (data) {
+                success: function(data) {
                     $('#' + name).empty();
                     $('#' + name).append('<option>==Pilih Salah Satu==</option>');
 
-                    $.each(data, function (key, value) {
+                    $.each(data, function(key, value) {
                         $('#' + name).append('<option value="' + key + '">' + value + '</option>');
                     });
                 }
             });
         }
-        $(function () {
-            $('#provinsi').on('change', function () {
+        $(function() {
+            $('#provinsi').on('change', function() {
                 onChangeSelect('{{ route('cities') }}', $(this).val(), 'kota');
             });
-            $('#kota').on('change', function () {
+            $('#kota').on('change', function() {
                 onChangeSelect('{{ route('districts') }}', $(this).val(), 'kecamatan');
             })
-            $('#kecamatan').on('change', function () {
+            $('#kecamatan').on('change', function() {
                 onChangeSelect('{{ route('villages') }}', $(this).val(), 'desa');
             })
         });

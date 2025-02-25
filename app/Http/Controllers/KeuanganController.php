@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\KeuanganExport;
 use App\Models\Keuangan;
 use App\Models\MasterKub;
 use Illuminate\Http\Request;
@@ -44,10 +45,16 @@ class KeuanganController extends Controller
     {
         //
     }
-    public function export()
+
+    public function export(Request $request)
     {
-        return Excel::download(new PengeluaranExport, 'pengeluaran.xlsx');
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+        $jenis = $request->input('JenisLaporan');
+        // dd($startDate);
+        return Excel::download(new KeuanganExport($startDate, $endDate, $jenis), 'Laporan_Keuangan.xlsx');
     }
+
     /**
      * Show the form for editing the specified resource.
      */
@@ -78,5 +85,4 @@ class KeuanganController extends Controller
         $keuangan->delete();
         return redirect()->route('pengeluaran.index')->with('success', 'Data berhasil dihapus');
     }
-
 }

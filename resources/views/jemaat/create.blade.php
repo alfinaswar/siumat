@@ -10,28 +10,23 @@
             });
         </script>
     @endif
-    <div class="nk-block nk-block-lg">
-        <div class="container">
-            <div class="d-flex align-items-center mb-4">
-                <h3 class="me-auto">Data Umat</h3>
-                <div>
-                    <a href="{{ route('jemaat.index') }}" class="btn btn-primary btn-sm me-2">Kembali</a>
-                    <a href="{{ route('jemaat.create') }}" class="btn btn-success btn-sm">Tambah Anggota
-                        Keluarga</a>
-                </div>
-            </div>
-        </div>
-    </div>
+
+
+
     <div class="nk-block nk-block-lg">
         <div class="container-fluid">
             <div class="card card-bordered card-preview">
                 <div class="card-header border-0 flex-wrap align-items-start">
-                    Data Anggota Keluarga
+                    <h5>Data Anggota Keluarga</h5>
+                    <div>
+                        <a href="{{ route('jemaat.index') }}" class="btn btn-primary btn-sm me-2">Kembali</a>
+                        <a href="{{ route('jemaat.create') }}" class="btn btn-success btn-sm">Tambah Anggota Keluarga</a>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="example" data-export-title="Export">
-                            <thead>
+                        <table id="example" class="table table-striped" data-export-title="Export">
+                            <thead class="thead-light">
                                 <tr>
                                     <th>No</th>
                                     <th>Nama</th>
@@ -40,7 +35,7 @@
                                     <th>Tanggal Lahir</th>
                                     <th>Status dalam Keluarga</th>
                                     <th>Status Perkawinan</th>
-                                    <th width="280px">Action</th>
+                                    <th width="280px">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -54,37 +49,31 @@
                                         <td>{{ $user->status_dalam_keluarga }}</td>
                                         <td>{{ $user->status_perkawinan }}</td>
                                         <td>
-                                            <!-- Tombol Detail -->
-                                            <a class="btn btn-primary" href="{{ route('jemaat.tambah-dokumen', $user->id) }}"
-                                                title="Detail">
+                                            <a href="{{ route('jemaat.tambah-dokumen', $user->id) }}"
+                                                class="btn btn-info btn-sm" title="Detail">
                                                 <i class="fa-solid fa-eye"></i>
                                             </a>
-
-                                            <!-- Tombol Edit -->
-                                            <a class="btn btn-primary" href="{{ route('jemaat.edit', $user->id) }}"
+                                            <a href="{{ route('jemaat.edit', $user->id) }}" class="btn btn-warning btn-sm"
                                                 title="Edit">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
-
-                                            <!-- Tombol Delete -->
                                             {!! Form::open(['method' => 'DELETE', 'route' => ['users.destroy', $user->id], 'style' => 'display:inline']) !!}
-                                            <button type="submit" class="btn btn-danger" title="Delete"
+                                            <button type="submit" class="btn btn-danger btn-sm" title="Hapus"
                                                 onclick="return confirm('Yakin ingin menghapus?')">
                                                 <i class="fa-solid fa-trash"></i>
                                             </button>
                                             {!! Form::close() !!}
                                         </td>
-
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
-            </div><!-- .card-preview -->
+            </div>
         </div>
     </div>
-    </div> <!-- nk-block -->
+
     <form id="delete-form" method="POST" style="display: none;">
         @csrf
         @method('DELETE')
@@ -93,8 +82,8 @@
 
 @push('scripts')
     <script>
-        $(document).ready(function () {
-            $('.btn-delete').on('click', function () {
+        $(document).ready(function() {
+            $('.btn-delete').on('click', function() {
                 let name = $(this).data('name');
                 let url = $(this).data('url');
 

@@ -71,8 +71,8 @@
                                         </div>
                                     </form>
                                     <div class="new-account mt-3 fw-bold text-center">
-                                        <p>Aplikasi Stasi Kota Nasareth VIII, Paroki Stella Maris Danga, Nagakeo, Nusa
-                                            Tenggara Timur</p>
+                                        <p>Aplikasi Stasi Kota Nasareth Danga VIII, Paroki Stella Maris Danga, Nagekeo,
+                                            Nusa Tenggara Timur</p>
                                     </div>
                                     <div class="new-account mt-3 text-center bottom">
                                         <p><i class="fa fa-copyright" aria-hidden="true"></i> Copyright Titikdigital.com

@@ -24,6 +24,16 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                             <div class="form-group">
+                                <strong>Jenis Transaksi:</strong>
+                                <select name="Jenis" class="form-control">
+                                    <option value="PEMASUKAN">PEMASUKAN</option>
+                                    <option value="PENGELUARAN">PENGELUARAN</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+                            <div class="form-group">
                                 <strong>Nama Pengeluaran:</strong>
                                 {!! Form::text('NamaPengeluaran', null, ['placeholder' => 'Nama Pengeluaran', 'class' => 'form-control']) !!}
                             </div>

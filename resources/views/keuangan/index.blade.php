@@ -14,28 +14,45 @@
     <div class="nk-block nk-block-lg">
         <div class="card card-bordered card-preview mb-4">
             <div class="card-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <form action="{{ route('pengeluaran.export') }}" method="GET" class="form-inline">
-                            <div class="form-group mb-2">
-                                <label for="start_date" class="mr-2">Tanggal Awal:</label>
+                <div class="row align-items-center">
+                    <div class="col-md-8 d-flex align-items-center gap-2">
+                        <form action="{{ route('pengeluaran.export') }}" method="GET"
+                            class="d-flex align-items-center w-100">
+                            <div class="form-group mb-0 me-2">
+                                <label for="start_date" class="me-2">Tanggal Awal:</label>
                                 <input type="date" class="form-control" id="start_date" name="start_date">
                             </div>
-                            <div class="form-group mx-sm-3 mb-2">
-                                <label for="end_date" class="mr-2">Tanggal Akhir:</label>
+
+                            <div class="form-group mb-0 me-2">
+                                <label for="end_date" class="me-2">Tanggal Akhir:</label>
                                 <input type="date" class="form-control" id="end_date" name="end_date">
                             </div>
-                            <button type="submit" class="btn btn-success mb-2">
-                                <i class="fas fa-file-excel"></i> Export Excel
-                            </button>
+
+                            <div class="form-group mb-0 me-2">
+                                <label for="JenisLaporan" class="me-2">Jenis Laporan:</label>
+                                <select name="JenisLaporan" id="JenisLaporan" class="form-control">
+                                    <option>Pilih Jenis Transaksi</option>
+                                    <option value="PEMASUKAN">PEMASUKAN</option>
+                                    <option value="PENGELUARAN">PENGELUARAN</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group mb-0 me-2">
+                                <button type="submit" class="btn btn-success mt-4">
+                                    <i class="fas fa-file-excel"></i> Export Excel
+                                </button>
+                            </div>
                         </form>
                     </div>
-                    <div class="col-md-6 text-end">
+
+                    <div class="col-md-4 text-end">
                         <a href="{{ route('pengeluaran.create') }}" class="btn btn-primary btn-sm">Tambah Pengeluaran</a>
                     </div>
                 </div>
             </div>
         </div>
+
+
 
         <div class="card card-bordered card-preview">
             <div class="card-body">
@@ -44,6 +61,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Jenis Transaksi</th>
                                 <th>Nama Pengeluaran</th>
                                 <th>Jumlah Pengeluaran</th>
                                 <th>Tanggal Pengeluaran</th>
@@ -56,6 +74,7 @@
                             @foreach ($data as $key => $keuangan)
                                 <tr>
                                     <td width="5%">{{ $key + 1 }}</td>
+                                    <td>{{ $keuangan->Jenis }}</td>
                                     <td>{{ $keuangan->NamaPengeluaran }}</td>
                                     <td>{{ $keuangan->JumlahPengeluaran }}</td>
                                     <td>{{ $keuangan->TanggalPengeluaran }}</td>
@@ -85,8 +104,8 @@
 
 @push('scripts')
     <script>
-        $(document).ready(function () {
-            $('.btn-delete').on('click', function () {
+        $(document).ready(function() {
+            $('.btn-delete').on('click', function() {
                 let name = $(this).data('name');
                 let url = $(this).data('url');
 
