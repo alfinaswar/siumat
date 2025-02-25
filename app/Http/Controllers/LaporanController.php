@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MasterKub;
 use Illuminate\Http\Request;
 
 class LaporanController extends Controller
@@ -11,7 +12,8 @@ class LaporanController extends Controller
      */
     public function index()
     {
-        //
+        $kub = MasterKub::get();
+        return view('laporan.index', compact('kub'));
     }
 
     /**

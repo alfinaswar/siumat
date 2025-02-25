@@ -236,7 +236,12 @@
                             @endcan --}}
                         </ul>
                     </li>
-
+                    <li class="{{ Request::segment(1) == 'pengeluaran' ? 'active' : '' }}">
+                        <a class="" href="{{ route('pengeluaran.index') }}" aria-expanded="true">
+                            <i class="fas fa-money-bill-wave"></i> <!-- Ikon Pengeluaran -->
+                            <span class="nav-text">Pengeluaran</span>
+                        </a>
+                    </li>
                     <!-- Data Induk -->
                     @can('data-induk')
                         <li class="{{ Request::segment(1) == 'data-induk' ? 'active' : '' }}">
@@ -256,22 +261,7 @@
                     @endcan
 
                     <!-- Laporan -->
-                    @can('laporan')
-                        <li class="{{ Request::segment(1) == 'laporan' ? 'active' : '' }}">
-                            <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                                <i class="fas fa-file-alt"></i> <!-- Ikon Laporan -->
-                                <span class="nav-text">Laporan</span>
-                            </a>
-                            <ul aria-expanded="false">
-                                <li class="{{ collect(Request::segments())->contains('laporan') ? 'mm-active' : '' }}">
-                                    <a href="{{ route('laporan.index') }}">
-                                        <i class="fas fa-chart-bar"></i> <!-- Ikon Detail Laporan -->
-                                        Laporan
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    @endcan
+
 
                     <!-- System -->
                     @can('user-management')

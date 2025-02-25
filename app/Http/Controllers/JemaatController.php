@@ -46,6 +46,7 @@ class JemaatController extends Controller
     {
         $user = User::where('no_kk', $id)->where('status_dalam_keluarga', 'AYAH')->first();
         $Keluarga = User::where('no_kk', $id)->get();
+        // dd($id);
         return view('jemaat.create', compact('user', 'Keluarga'));
     }
     public function dokumen($id)

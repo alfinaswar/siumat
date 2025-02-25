@@ -181,6 +181,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Laravolt\Indonesia\ServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
     ],
 
     /*
@@ -195,5 +196,6 @@ return [
      */
     'aliases' => Facade::defaultAliases()->merge([
         'Indonesia' => Laravolt\Indonesia\Facade::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ])->toArray(),
 ];

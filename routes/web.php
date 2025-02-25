@@ -4,6 +4,7 @@ use App\Http\Controllers\DependantDropdownController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JemaatController;
 use App\Http\Controllers\KartuKeluargaController;
+use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\MasterKubController;
 use App\Http\Controllers\MasterMajelisController;
@@ -108,11 +109,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::prefix('laporan')->group(function () {
         Route::GET('/', [LaporanController::class, 'index'])->name('laporan.index');
     });
-
+    Route::get('/pengeluaran/export', [KeuanganController::class, 'export'])->name('pengeluaran.export');
     Route::get('provinces', [DependantDropdownController::class, 'provinces'])->name('provinces');
     Route::get('cities', [DependantDropdownController::class, 'cities'])->name('cities');
     Route::get('districts', [DependantDropdownController::class, 'districts'])->name('districts');
     Route::get('villages', [DependantDropdownController::class, 'villages'])->name('villages');
     Route::resource('roles', RoleController::class);
+    Route::resource('pengeluaran', KeuanganController::class);
+
     Route::resource('users', UserController::class);
 });
